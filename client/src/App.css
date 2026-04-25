@@ -61,30 +61,16 @@ body {
   transition: grid-template 0.5s ease;
 }
 
-/* Landscape photo: wide bottom */
-.layout-landscape {
+/* Single layout — photo fills remaining height */
+.dashboard {
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto 1fr auto auto;
+  grid-template-rows: auto 1fr 1fr auto;
   grid-template-areas:
     "weather calendar"
     "weather todoist"
     "photo photo"
     "quote quote";
 }
-.layout-landscape .photo-widget { height: 280px; }
-
-/* Portrait photo: tall left */
-.layout-portrait {
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto 1fr auto;
-  grid-template-areas:
-    "photo weather"
-    "photo calendar"
-    "photo todoist"
-    "quote quote";
-}
-.layout-portrait .photo-widget { height: auto; }
-.layout-portrait .pw-main { object-fit: contain; }
 
 @media (min-aspect-ratio: 1/1) {
   .dashboard { height: 100vh; width: auto; }

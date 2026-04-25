@@ -1,25 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
-export default function PhotoWidget({ interval, onOrientationChange }) {
+export default function PhotoWidget({ interval }) {
   const [photos, setPhotos] = useState([]);
   const [idx, setIdx] = useState(0);
-  const [orientations, setOrientations] = useState({});
 
   useEffect(() => {
-    fetch('/api/photos').then(r => r.json()).then(d => {
-      const items = d.photos || [];
-      items.forEach(p => {
-        const img = new Image();
-        img.onload = () => {
-          setOrientations(prev => {
-            const next = { ...prev, [p.id]: img.naturalHeight > img.naturalWidth ? 'portrait' : 'landscape' };
-            return next;
-          });
-        };
-        img.src = p.url;
-      });
-      setPhotos(items);
-    }).catch(() => {});
+    fetch('/api/photos').then(r => r.json()).then(d => setPhotos(d.photos || [])).catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -27,13 +13,6 @@ export default function PhotoWidget({ interval, onOrientationChange }) {
     const t = setInterval(() => setIdx(i => (i + 1) % photos.length), (interval || 30) * 1000);
     return () => clearInterval(t);
   }, [photos, interval]);
-
-  const current = photos[idx];
-  const orientation = current ? (orientations[current.id] || 'landscape') : 'landscape';
-
-  useEffect(() => {
-    if (onOrientationChange) onOrientationChange(orientation);
-  }, [orientation, onOrientationChange]);
 
   if (!photos.length) return <div className="photo-widget"><span className="pw-empty">📸 Add photos via #settings</span></div>;
 

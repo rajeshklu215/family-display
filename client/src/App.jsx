@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import PhotoWidget from './components/Photos';
 import Weather from './components/Weather';
 import Calendar from './components/Calendar';
@@ -8,13 +8,9 @@ import PhotoManager from './components/PhotoManager';
 import './App.css';
 
 function Dashboard({ config }) {
-  const [layout, setLayout] = useState('landscape');
-
-  const onOrientationChange = useCallback((o) => setLayout(o), []);
-
   return (
-    <div className={`dashboard layout-${layout}`}>
-      <PhotoWidget interval={config.photoInterval} onOrientationChange={onOrientationChange} />
+    <div className="dashboard">
+      <PhotoWidget interval={config.photoInterval} />
       <Weather city={config.weatherCity} />
       <Calendar />
       <Todoist />
