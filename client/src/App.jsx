@@ -31,7 +31,11 @@ export default function App() {
     fetch('/api/config').then(r => r.json()).then(setConfig).catch(() => {});
     const onHash = () => setPage(window.location.hash === '#settings' ? 'settings' : 'dashboard');
     window.addEventListener('hashchange', onHash);
-    return () => window.removeEventListener('hashchange', onHash);
+    // Auto-refresh daily at 3 AM to prevent stale state
+    const refresh = setInterval(() => {
+      if (new Date().getHours() === 3) location.reload();
+    }, 3600000);
+    return () => { window.removeEventListener('hashchange', onHash); clearInterval(refresh); };
   }, []);
 
   if (!config) return <div className="loading">Loading...</div>;
