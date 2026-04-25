@@ -1,0 +1,9 @@
+node_modules/
+client/build/
+server/credentials.json
+server/token.json
+server/data/
+config.json
+photos/*
+!photos/.gitkeep
+server.log

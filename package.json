@@ -1,0 +1,20 @@
+{
+  "name": "family-display",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "server": "node server/index.js",
+    "client": "cd client && npx vite --host",
+    "build": "cd client && npx vite build",
+    "start": "NODE_ENV=production node server/index.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "dependencies": {
+    "concurrently": "9.1.2",
+    "cors": "2.8.5",
+    "express": "4.21.2",
+    "googleapis": "144.0.0",
+    "multer": "^1.4.5-lts.1",
+    "node-fetch": "3.3.2"
+  }
+}

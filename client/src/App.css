@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --text: #fff;
+  --dim: rgba(255,255,255,0.6);
+  --glass: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.1);
+  --accent: #7ec8e3;
+  --accent2: #a78bfa;
+  --radius: 20px;
+  --gap: 12px;
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: #07070f;
+  color: var(--text);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* --- Fullscreen background photo --- */
+.bg-slideshow { position: fixed; inset: 0; z-index: 0; background: #000; }
+.bg-photo {
+  position: absolute; inset: 0;
+  transition: opacity 2s ease;
+}
+.bg-photo.hidden { opacity: 0; }
+.bg-photo.visible { opacity: 1; }
+.bg-photo .bg-blur {
+  position: absolute; inset: -20px;
+  width: calc(100% + 40px); height: calc(100% + 40px);
+  object-fit: cover;
+  filter: blur(30px) brightness(0.4);
+}
+.bg-photo .bg-main {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: contain;
+}
+.bg-overlay {
+  position: fixed; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.5) 100%);
+}
+
+/* --- Dashboard layout --- */
+.dashboard {
+  position: relative; z-index: 2;
+  display: grid;
+  gap: var(--gap);
+  padding: 20px;
+  height: 100vh;
+  width: 100vw;
+  max-width: 1080px;
+  max-height: 1920px;
+  margin: 0 auto;
+  aspect-ratio: 9/16;
+  transition: grid-template 0.5s ease;
+}
+
+/* Landscape photo: wide bottom */
+.layout-landscape {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr auto auto;
+  grid-template-areas:
+    "weather calendar"
+    "weather todoist"
+    "photo photo"
+    "quote quote";
+}
+.layout-landscape .photo-widget { height: 280px; }
+
+/* Portrait photo: tall left */
+.layout-portrait {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-areas:
+    "photo weather"
+    "photo calendar"
+    "photo todoist"
+    "quote quote";
+}
+.layout-portrait .photo-widget { height: auto; }
+.layout-portrait .pw-main { object-fit: contain; }
+
+@media (min-aspect-ratio: 1/1) {
+  .dashboard { height: 100vh; width: auto; }
+  body { display: flex; align-items: center; justify-content: center; }
+}
+@media (max-aspect-ratio: 1/1) {
+  .dashboard { width: 100vw; height: 100vh; max-width: none; max-height: none; }
+}
+
+.loading {
+  display: flex; align-items: center; justify-content: center;
+  height: 100vh; font-size: 1.2rem; color: var(--dim);
+}
+
+/* --- Glass card --- */
+.widget {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  overflow: hidden;
+  position: relative;
+}
+.widget::before {
+  content: '';
+  position: absolute; inset: -1px;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, rgba(126,200,227,0.15), rgba(167,139,250,0.1), transparent 60%);
+  z-index: -1;
+  opacity: 0.5;
+}
+.widget h2 {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: 10px;
+  font-weight: 500;
+  text-shadow: 0 0 20px rgba(126,200,227,0.3);
+}
+
+/* --- Greeting (DAKboard style: time + date + greeting) --- */
+.greeting {
+  grid-area: greeting;
+  text-align: center;
+  padding: 30px 20px 10px;
+  background: none; border: none; backdrop-filter: none;
+}
+.greeting-time { font-size: 5rem; font-weight: 200; letter-spacing: 2px; line-height: 1; }
+.greeting-date { font-size: 1rem; color: var(--dim); font-weight: 300; margin-top: 8px; letter-spacing: 1px; }
+.greeting-hello { font-size: 1.1rem; font-weight: 300; margin-top: 12px; color: rgba(255,255,255,0.75); }
+
+/* --- Weather --- */
+.weather { grid-area: weather; }
+.wc-time { font-size: 2.4rem; font-weight: 200; color: var(--text); letter-spacing: 1px; white-space: nowrap; text-shadow: 0 0 30px rgba(126,200,227,0.25); }
+.wc-date { font-size: 0.85rem; font-weight: 300; color: var(--dim); margin-bottom: 10px; }
+.weather-main { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.weather-main img { width: 48px; height: 48px; filter: brightness(1.2) drop-shadow(0 0 8px rgba(126,200,227,0.3)); }
+.weather-main .temp { font-size: 1.8rem; font-weight: 200; line-height: 1; text-shadow: 0 0 20px rgba(126,200,227,0.2); }
+.weather-main .desc { color: var(--dim); font-size: 0.8rem; text-transform: capitalize; font-weight: 300; }
+.hourly-forecast { display: flex; gap: 4px; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.hourly-item { text-align: center; flex: 1; font-size: 0.65rem; color: var(--dim); font-weight: 300; }
+.hourly-item img { width: 24px; height: 24px; filter: brightness(1.1) drop-shadow(0 0 4px rgba(126,200,227,0.2)); }
+.weekly-forecast { display: flex; flex-direction: column; gap: 2px; }
+.weekly-day { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 300; }
+.weekly-label { width: 32px; color: var(--dim); }
+.weekly-day img { width: 24px; height: 24px; filter: brightness(1.1) drop-shadow(0 0 4px rgba(126,200,227,0.2)); }
+.weekly-desc { flex: 1; color: var(--dim); font-size: 0.65rem; }
+.weekly-hi { color: var(--text); width: 30px; text-align: right; }
+.weekly-lo { color: var(--dim); width: 30px; text-align: right; }
+
+/* --- Calendar --- */
+.calendar { grid-area: calendar; overflow: hidden; }
+.cal-event { display: flex; flex-direction: column; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.8rem; font-weight: 300; }
+.cal-event .cal-time { color: var(--accent); font-size: 0.65rem; font-weight: 400; text-shadow: 0 0 12px rgba(126,200,227,0.2); }
+.cal-empty { color: var(--dim); font-size: 0.8rem; font-weight: 300; }
+
+/* --- Todoist --- */
+.todoist-projects { grid-area: todoist; overflow: hidden; }
+.projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.project-col { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 10px; border: 1px solid rgba(255,255,255,0.04); }
+.project-name { font-size: 0.75rem; color: var(--accent); margin-bottom: 6px; font-weight: 500; letter-spacing: 0.5px; text-shadow: 0 0 12px rgba(126,200,227,0.2); }
+.project-empty { color: var(--dim); font-size: 0.65rem; font-weight: 300; }
+.todo-item { display: flex; align-items: flex-start; gap: 6px; padding: 2px 0; font-size: 0.75rem; font-weight: 300; line-height: 1.3; }
+.todo-item .priority { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+.p1 { background: #ff4444; box-shadow: 0 0 6px #ff4444; } .p2 { background: #ff9800; box-shadow: 0 0 6px #ff9800; } .p3 { background: #7ec8e3; box-shadow: 0 0 6px #7ec8e3; } .p4 { background: rgba(255,255,255,0.2); }
+
+/* --- Quote --- */
+.quote { grid-area: quote; text-align: center; padding: 16px 24px; background: none; border: none; backdrop-filter: none; }
+.quote .quote-text { font-size: 0.9rem; font-weight: 300; font-style: italic; line-height: 1.5; background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.quote .quote-author { font-size: 0.7rem; color: var(--dim); margin-top: 6px; font-weight: 400; }
+
+/* --- No photos fallback --- */
+.no-bg { background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 50%, #0a0a1a 100%); }
+
+/* --- Photo widget --- */
+.photo-widget {
+  grid-area: photo;
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: #000;
+  min-height: 0;
+  box-shadow: 0 0 30px rgba(126,200,227,0.08), inset 0 0 30px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.pw-frame {
+  position: absolute; inset: 0;
+  transition: opacity 2s ease;
+}
+.pw-frame.hidden { opacity: 0; }
+.pw-frame.visible { opacity: 1; }
+.pw-blur {
+  position: absolute; inset: -20px;
+  width: calc(100% + 40px); height: calc(100% + 40px);
+  object-fit: cover;
+  filter: blur(25px) brightness(0.5);
+}
+.pw-main {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: contain;
+  object-position: center center;
+}
+.photo-widget .pw-empty { color: var(--dim); font-size: 0.8rem; z-index: 1; }
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+
+/* --- Phone --- */
+@media (max-width: 768px) {
+  .dashboard, .layout-landscape, .layout-portrait {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, auto);
+    grid-template-areas: "weather" "calendar" "todoist" "photo" "quote";
+    overflow-y: auto; height: auto; max-height: none;
+  }
+  .layout-landscape .photo-widget, .layout-portrait .photo-widget { height: 250px; }
+  body { overflow: auto; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .greeting-time { font-size: 3rem; }
+}
+
+/* --- Photo Manager (settings page) --- */
+.photo-manager {
+  padding: 20px; max-width: 600px; margin: 0 auto;
+  font-family: 'Inter', -apple-system, sans-serif; color: #fff;
+}
+.photo-manager h2 { font-size: 1.3rem; font-weight: 400; margin-bottom: 8px; }
+.pm-hint { color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-bottom: 16px; }
+.pm-upload-btn {
+  display: block; width: 100%; padding: 14px;
+  background: var(--accent); color: #000; border: none; border-radius: 12px;
+  font-size: 1rem; font-weight: 600; cursor: pointer; margin-bottom: 16px;
+}
+.pm-upload-btn:active { opacity: 0.8; }
+.pm-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+.pm-thumb { position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 1; }
+.pm-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pm-remove {
+  position: absolute; top: 4px; right: 4px;
+  background: rgba(0,0,0,0.7); color: #fff; border: none;
+  width: 24px; height: 24px; border-radius: 50%;
+  font-size: 0.75rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.pm-empty { color: rgba(255,255,255,0.4); font-size: 0.9rem; text-align: center; margin-top: 30px; }
+.pm-back { display: block; text-align: center; margin-top: 20px; color: var(--accent); font-size: 0.85rem; }

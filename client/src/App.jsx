@@ -1,0 +1,40 @@
+import React, { useState, useEffect, useCallback } from 'react';
+import PhotoWidget from './components/Photos';
+import Weather from './components/Weather';
+import Calendar from './components/Calendar';
+import Todoist from './components/Todoist';
+import Quote from './components/Quote';
+import PhotoManager from './components/PhotoManager';
+import './App.css';
+
+function Dashboard({ config }) {
+  const [layout, setLayout] = useState('landscape');
+
+  const onOrientationChange = useCallback((o) => setLayout(o), []);
+
+  return (
+    <div className={`dashboard layout-${layout}`}>
+      <PhotoWidget interval={config.photoInterval} onOrientationChange={onOrientationChange} />
+      <Weather city={config.weatherCity} />
+      <Calendar />
+      <Todoist />
+      <Quote />
+    </div>
+  );
+}
+
+export default function App() {
+  const [config, setConfig] = useState(null);
+  const [page, setPage] = useState(window.location.hash === '#settings' ? 'settings' : 'dashboard');
+
+  useEffect(() => {
+    fetch('/api/config').then(r => r.json()).then(setConfig).catch(() => {});
+    const onHash = () => setPage(window.location.hash === '#settings' ? 'settings' : 'dashboard');
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+
+  if (!config) return <div className="loading">Loading...</div>;
+  if (page === 'settings') return <PhotoManager />;
+  return <Dashboard config={config} />;
+}

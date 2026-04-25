@@ -1,0 +1,25 @@
+{
+  "weather": {
+    "apiKey": "YOUR_OPENWEATHERMAP_API_KEY",
+    "city": "Sammamish",
+    "state": "WA",
+    "units": "imperial"
+  },
+  "googleCalendar": {
+    "credentialsPath": "./server/credentials.json",
+    "tokenPath": "./server/token.json",
+    "calendarIds": ["primary"]
+  },
+  "todoist": {
+    "apiKey": "YOUR_TODOIST_API_KEY",
+    "inboxId": "YOUR_INBOX_PROJECT_ID"
+  },
+  "photos": {
+    "directory": "./photos",
+    "intervalSeconds": 30
+  },
+  "display": {
+    "refreshIntervalSeconds": 300,
+    "familyName": "YourFamily"
+  }
+}
