@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 32px; }
 
 :root {
   --text: #fff;
@@ -130,23 +131,23 @@ body {
 .weather-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; justify-content: space-between; }
 .weather-main { display: flex; align-items: center; gap: 10px; }
 .dress-up { text-align: center; margin-top: 8px; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; }
-.dress-kid { width: 110px; height: 155px; }
+.dress-kid { width: 140px; height: 195px; }
 .dress-kid svg { width: 100%; height: 100%; }
 .dress-tip { font-size: 1.1rem; color: var(--accent2); font-weight: 400; white-space: nowrap; }
 .weather-right { flex: 1; display: flex; flex-direction: column; gap: 6px; min-width: 0; align-items: center; }
 .wc-time { font-size: 5.5rem; font-weight: 100; color: var(--text); letter-spacing: 4px; white-space: nowrap; text-shadow: 0 0 40px rgba(126,200,227,0.3); background: linear-gradient(135deg, #fff 60%, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.weather-main img { width: 72px; height: 72px; filter: brightness(1.2) drop-shadow(0 0 8px rgba(126,200,227,0.3)); }
+.weather-main img { width: 96px; height: 96px; filter: brightness(1.2) drop-shadow(0 0 8px rgba(126,200,227,0.3)); }
 .weather-main .temp { font-size: 3.2rem; font-weight: 200; line-height: 1; text-shadow: 0 0 20px rgba(126,200,227,0.2); }
 .weather-main .desc { color: var(--dim); font-size: 1.4rem; text-transform: capitalize; font-weight: 300; }
 .weather-vdiv { width: 1px; align-self: stretch; background: var(--glass-border); flex-shrink: 0; }
 .hourly-forecast { display: flex; gap: 4px; width: 100%; }
 .hourly-item { text-align: center; flex: 1; font-size: 1.15rem; color: var(--dim); font-weight: 300; }
-.hourly-item img { width: 36px; height: 36px; filter: brightness(1.1) drop-shadow(0 0 4px rgba(126,200,227,0.2)); }
+.hourly-item img { width: 48px; height: 48px; filter: brightness(1.1) drop-shadow(0 0 4px rgba(126,200,227,0.2)); }
 .weekly-forecast { display: flex; flex-direction: column; gap: 2px; align-items: center; }
 .weekly-day { display: flex; align-items: center; gap: 6px; font-size: 1.27rem; font-weight: 300; width: 100%; }
-.weekly-label { width: 48px; color: var(--dim); flex-shrink: 0; }
-.weekly-day img { width: 36px; height: 36px; flex-shrink: 0; filter: brightness(1.1) drop-shadow(0 0 4px rgba(126,200,227,0.2)); }
-.weekly-desc { width: 80px; color: var(--dim); font-size: 1.15rem; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.weekly-label { width: 64px; color: var(--dim); flex-shrink: 0; }
+.weekly-day img { width: 48px; height: 48px; flex-shrink: 0; filter: brightness(1.1) drop-shadow(0 0 4px rgba(126,200,227,0.2)); }
+.weekly-desc { width: 110px; color: var(--dim); font-size: 1.15rem; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .weekly-hi { color: var(--text); width: 40px; text-align: right; }
 .weekly-vdiv { width: 1px; align-self: stretch; background: var(--glass-border); margin: 0 6px; }
 .weekly-lo { color: var(--dim); width: 40px; text-align: right; }
@@ -158,7 +159,7 @@ body {
 .cal-day-label { text-align: center; font-size: 1rem; color: var(--dim); font-weight: 400; padding-bottom: 6px; }
 .cal-cell { text-align: center; font-size: 1.4rem; font-weight: 300; padding: 6px 0; position: relative; }
 .cal-cell.empty { visibility: hidden; }
-.cal-cell.today span:first-child { background: var(--accent); color: #000; border-radius: 50%; width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; font-weight: 500; }
+.cal-cell.today span:first-child { background: var(--accent); color: #000; border-radius: 50%; width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; font-weight: 500; }
 .cal-event-name { font-size: 0.75rem; color: var(--accent2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; }
 .cal-event-more { font-size: 0.65rem; color: var(--dim); }
 
