@@ -6,7 +6,7 @@ echo "=== Family Display — Pi Setup ==="
 
 # Install dependencies
 sudo apt-get update
-sudo apt-get install -y chromium-browser unclutter nodejs npm
+sudo apt-get install -y chromium unclutter nodejs npm
 
 # Install Node dependencies
 cd "$(dirname "$0")"/..
@@ -38,7 +38,7 @@ cat > ~/.config/autostart/family-display-kiosk.desktop <<EOF
 [Desktop Entry]
 Type=Application
 Name=Family Display Kiosk
-Exec=/bin/bash -c 'sleep 10 && xset s off && xset -dpms && xset s noblank && unclutter -idle 0 & chromium-browser --noerrdialogs --disable-infobars --kiosk --incognito --disable-translate --disable-features=TranslateUI http://localhost:3000'
+Exec=/bin/bash -c 'sleep 10 && xset s off && xset -dpms && xset s noblank && unclutter -idle 0 & chromium --noerrdialogs --disable-infobars --kiosk --incognito --disable-translate --disable-features=TranslateUI http://localhost:3000'
 X-GNOME-Autostart-enabled=true
 EOF
 
