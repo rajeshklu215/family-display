@@ -144,13 +144,11 @@ body {
 .hourly-item { text-align: center; flex: 1; font-size: 1.15rem; color: var(--dim); font-weight: 300; }
 .hourly-item img { width: 48px; height: 48px; filter: brightness(1.1) drop-shadow(0 0 4px rgba(126,200,227,0.2)); }
 .weekly-forecast { display: flex; flex-direction: column; gap: 2px; align-items: center; }
-.weekly-day { display: flex; align-items: center; gap: 6px; font-size: 1.27rem; font-weight: 300; width: 100%; }
+.weekly-day { display: flex; align-items: center; gap: 4px; font-size: 1.27rem; font-weight: 300; width: 100%; }
 .weekly-label { width: 64px; color: var(--dim); flex-shrink: 0; }
-.weekly-day img { width: 48px; height: 48px; flex-shrink: 0; filter: brightness(1.1) drop-shadow(0 0 4px rgba(126,200,227,0.2)); }
-.weekly-desc { width: 110px; color: var(--dim); font-size: 1.15rem; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.weekly-hi { color: var(--text); width: 40px; text-align: right; }
-.weekly-vdiv { width: 1px; align-self: stretch; background: var(--glass-border); margin: 0 6px; }
-.weekly-lo { color: var(--dim); width: 40px; text-align: right; }
+.weekly-day img { width: 48px; height: 48px; flex-shrink: 0; filter: brightness(1.2) drop-shadow(0 0 4px rgba(126,200,227,0.2)); }
+.weekly-hi { color: var(--text); width: 50px; text-align: right; }
+.weekly-lo { color: var(--dim); width: 50px; text-align: right; }
 
 /* --- Calendar (monthly grid) --- */
 .calendar { grid-area: calendar; overflow: hidden; display: flex; flex-direction: column; }

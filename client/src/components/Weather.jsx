@@ -66,7 +66,7 @@ export default function Weather({ city }) {
               {hourly.map((h, i) => (
                 <div key={i} className="hourly-item">
                   <div>{h.time}</div>
-                  <img src={`https://openweathermap.org/img/wn/${h.icon}.png`} alt="" />
+                  <img src={`https://openweathermap.org/img/wn/${h.icon}@2x.png`} alt="" />
                   <div>{h.temp}°</div>
                 </div>
               ))}
@@ -77,9 +77,7 @@ export default function Weather({ city }) {
               {daily.map((d, i) => (
                 <div key={i} className="weekly-day">
                   <span className="weekly-label">{d.day}</span>
-                  <img src={`https://openweathermap.org/img/wn/${d.icon}.png`} alt="" />
-                  <span className="weekly-desc">{d.desc}</span>
-                  <span className="weekly-vdiv" />
+                  <img src={`https://openweathermap.org/img/wn/${d.icon}@2x.png`} alt="" />
                   <span className="weekly-hi">{Math.round(d.high)}°</span>
                   <span className="weekly-lo">{Math.round(d.low)}°</span>
                 </div>
