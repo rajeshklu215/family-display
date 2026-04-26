@@ -4,7 +4,10 @@ export default function Quote() {
   const [quote, setQuote] = useState(null);
 
   useEffect(() => {
-    fetch('/api/quote').then(r => r.json()).then(setQuote).catch(() => {});
+    const load = () => fetch('/api/quote').then(r => r.json()).then(setQuote).catch(() => {});
+    load();
+    const t = setInterval(load, 30 * 60 * 1000);
+    return () => clearInterval(t);
   }, []);
 
   if (!quote) return null;

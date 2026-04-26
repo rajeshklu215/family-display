@@ -4,6 +4,7 @@ import Weather from './components/Weather';
 import Calendar from './components/Calendar';
 import Todoist from './components/Todoist';
 import Quote from './components/Quote';
+import WordOfDay from './components/WordOfDay';
 import PhotoManager from './components/PhotoManager';
 import './App.css';
 
@@ -13,6 +14,7 @@ function Dashboard({ config }) {
       <PhotoWidget interval={config.photoInterval} />
       <Weather city={config.weatherCity} />
       <Calendar />
+      <WordOfDay />
       <Todoist />
       <Quote />
     </div>

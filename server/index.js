@@ -188,9 +188,9 @@ const funnyQuotes = [
   { text: "I'm Korean, I can't just be regular disappointed. I have to be dramatically disappointed.", author: "Janet Kim" }
 ];
 app.get('/api/quote', (req, res) => {
-  // Pick a consistent quote per day
-  const dayIndex = Math.floor(Date.now() / 86400000) % funnyQuotes.length;
-  res.json(funnyQuotes[dayIndex]);
+  // Pick a new quote every 30 minutes
+  const slotIndex = Math.floor(Date.now() / (30 * 60 * 1000)) % funnyQuotes.length;
+  res.json(funnyQuotes[slotIndex]);
 });
 
 // --- Google OAuth helper ---
