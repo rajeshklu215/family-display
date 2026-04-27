@@ -20,7 +20,6 @@ export default function PhotoWidget({ interval }) {
     <div className="photo-widget">
       {photos.map((p, i) => (
         <div key={p.id || i} className={`pw-frame ${i === idx ? 'visible' : 'hidden'}`}>
-          <img className="pw-blur" src={p.url} alt="" />
           <img className="pw-main" src={p.url} alt="" />
         </div>
       ))}

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PhotoWidget from './components/Photos';
+import Clock from './components/Clock';
 import Weather from './components/Weather';
 import Calendar from './components/Calendar';
+import DailyForecast from './components/DailyForecast';
 import Todoist from './components/Todoist';
 import Quote from './components/Quote';
 import WordOfDay from './components/WordOfDay';
@@ -11,11 +13,13 @@ import './App.css';
 function Dashboard({ config }) {
   return (
     <div className="dashboard">
-      <PhotoWidget interval={config.photoInterval} />
+      <Clock />
       <Weather city={config.weatherCity} />
       <Calendar />
-      <WordOfDay />
+      <DailyForecast />
+      <PhotoWidget interval={config.photoInterval} />
       <Todoist />
+      <WordOfDay />
       <Quote />
     </div>
   );

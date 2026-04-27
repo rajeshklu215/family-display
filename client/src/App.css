@@ -59,15 +59,15 @@ body {
   transition: grid-template 0.5s ease;
 }
 
-/* Single layout — photo fills remaining height */
+/* Clock left, temp right, calendar+forecast, photo 60% left, quote bottom */
 .dashboard {
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 2fr;
   grid-template-rows: auto auto 1fr auto auto;
   grid-template-areas:
-    "weather calendar"
-    "weather calendar"
-    "photo photo"
-    "todoist wordofday"
+    "clock weather"
+    "calendar forecast"
+    "photo todoist"
+    "photo wordofday"
     "quote quote";
 }
 
@@ -125,30 +125,31 @@ body {
 .greeting-hello { font-size: 1.1rem; font-weight: 300; margin-top: 12px; color: rgba(255,255,255,0.75); }
 
 /* --- Weather --- */
-.weather { grid-area: weather; display: flex; flex-direction: column; }
-.wc-date { font-size: 1.5rem; font-weight: 300; color: var(--dim); margin-bottom: 10px; }
-.weather-row { display: flex; gap: 10px; flex: 1; min-height: 0; }
-.weather-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; justify-content: space-between; }
-.weather-main { display: flex; align-items: center; gap: 10px; }
-.dress-up { text-align: center; margin-top: 8px; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; }
-.dress-kid { width: 140px; height: 195px; }
-.dress-kid svg { width: 100%; height: 100%; }
-.dress-tip { font-size: 1.1rem; color: var(--accent2); font-weight: 400; white-space: nowrap; }
-.weather-right { flex: 1; display: flex; flex-direction: column; gap: 6px; min-width: 0; align-items: center; }
+/* --- Clock --- */
+.clock-widget { grid-area: clock; background: none; border: none; backdrop-filter: none; }
 .wc-time { font-size: 5.5rem; font-weight: 100; color: var(--text); letter-spacing: 4px; white-space: nowrap; text-shadow: 0 0 40px rgba(126,200,227,0.3); background: linear-gradient(135deg, #fff 60%, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.weather-main img { width: 96px; height: 96px; filter: brightness(1.2) drop-shadow(0 0 8px rgba(126,200,227,0.3)); }
-.weather-main .temp { font-size: 3.2rem; font-weight: 200; line-height: 1; text-shadow: 0 0 20px rgba(126,200,227,0.2); }
-.weather-main .desc { color: var(--dim); font-size: 1.4rem; text-transform: capitalize; font-weight: 300; }
-.weather-vdiv { width: 1px; align-self: stretch; background: var(--glass-border); flex-shrink: 0; }
-.hourly-forecast { display: flex; gap: 4px; width: 100%; }
-.hourly-item { text-align: center; flex: 1; font-size: 1.15rem; color: var(--dim); font-weight: 300; }
-.hourly-item img { width: 48px; height: 48px; filter: brightness(1.1) drop-shadow(0 0 4px rgba(126,200,227,0.2)); }
-.weekly-forecast { display: flex; flex-direction: column; gap: 2px; align-items: center; }
-.weekly-day { display: flex; align-items: center; gap: 4px; font-size: 1.27rem; font-weight: 300; width: 100%; }
-.weekly-label { width: 64px; color: var(--dim); flex-shrink: 0; }
-.weekly-day img { width: 48px; height: 48px; flex-shrink: 0; filter: brightness(1.2) drop-shadow(0 0 4px rgba(126,200,227,0.2)); }
-.weekly-hi { color: var(--text); width: 50px; text-align: right; }
-.weekly-lo { color: var(--dim); width: 50px; text-align: right; }
+.wc-date { font-size: 1.5rem; font-weight: 300; color: var(--dim); }
+
+/* --- Weather (temp + kid, top right) --- */
+.weather { grid-area: weather; display: flex; align-items: center; }
+.weather-row { display: flex; align-items: center; gap: 8px; width: 100%; }
+.weather-main { display: flex; align-items: center; gap: 8px; }
+.weather-main img { width: 80px; height: 80px; filter: brightness(1.2) drop-shadow(0 0 8px rgba(126,200,227,0.3)); }
+.weather-main .temp { font-size: 2.8rem; font-weight: 200; line-height: 1; }
+.weather-main .desc { color: var(--dim); font-size: 1.2rem; text-transform: capitalize; font-weight: 300; }
+.dress-up { margin-left: auto; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.dress-kid { width: 120px; height: 168px; }
+.dress-kid svg { width: 100%; height: 100%; }
+.dress-tip { font-size: 0.9rem; color: var(--accent2); font-weight: 400; white-space: nowrap; }
+
+/* --- Daily Forecast --- */
+.forecast { grid-area: forecast; }
+.weekly-forecast { display: flex; flex-direction: column; gap: 2px; }
+.weekly-day { display: flex; align-items: center; gap: 4px; font-size: 1.2rem; font-weight: 300; }
+.weekly-label { width: 56px; color: var(--dim); flex-shrink: 0; }
+.weekly-day img { width: 44px; height: 44px; flex-shrink: 0; filter: brightness(1.2) drop-shadow(0 0 4px rgba(126,200,227,0.2)); }
+.weekly-hi { color: var(--text); width: 46px; text-align: right; }
+.weekly-lo { color: var(--dim); width: 46px; text-align: right; }
 
 /* --- Calendar (monthly grid) --- */
 .calendar { grid-area: calendar; overflow: hidden; display: flex; flex-direction: column; }
@@ -194,16 +195,12 @@ body {
 /* --- Photo widget --- */
 .photo-widget {
   grid-area: photo;
-  border-radius: var(--radius);
+  border-radius: 24px;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
   background: #000;
   min-height: 0;
-  box-shadow: 0 0 30px rgba(126,200,227,0.08), inset 0 0 30px rgba(0,0,0,0.3);
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 2px solid rgba(255,255,255,0.1);
 }
 .pw-frame {
   position: absolute; inset: 0;
@@ -211,16 +208,10 @@ body {
 }
 .pw-frame.hidden { opacity: 0; }
 .pw-frame.visible { opacity: 1; }
-.pw-blur {
-  position: absolute; inset: -20px;
-  width: calc(100% + 40px); height: calc(100% + 40px);
-  object-fit: cover;
-  filter: blur(25px) brightness(0.5);
-}
 .pw-main {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center center;
 }
 .photo-widget .pw-empty { color: var(--dim); font-size: 0.8rem; z-index: 1; }
