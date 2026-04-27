@@ -106,7 +106,6 @@ body {
 }
 .widget h2 {
   font-size: 1.15rem;
-  text-transform: uppercase;
   letter-spacing: 2px;
   color: var(--accent);
   margin-bottom: 10px;

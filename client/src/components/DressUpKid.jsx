@@ -8,6 +8,9 @@ const Base = ({ children }) => (
     <circle cx="57" cy="25" r="2.5" fill="#333" />
     <path d="M43 33 Q50 39 57 33" fill="none" stroke="#333" strokeWidth="1.5" strokeLinecap="round" />
     <path d="M32 22 Q34 8 50 8 Q66 8 68 22" fill="#4A3728" />
+    {/* Shoulder-length hair */}
+    <path d="M32 22 Q28 30 30 46" stroke="#4A3728" strokeWidth="6" fill="none" strokeLinecap="round" />
+    <path d="M68 22 Q72 30 70 46" stroke="#4A3728" strokeWidth="6" fill="none" strokeLinecap="round" />
     {children}
   </svg>
 );
