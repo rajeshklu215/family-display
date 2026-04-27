@@ -18,7 +18,7 @@ export default function Todoist() {
 
   return (
     <div className="widget todoist-projects">
-      <h2>✅ Todoist</h2>
+      <h2>✅ To-Do</h2>
       {unsectioned.length > 0 && (
         <div className="project-col" style={{marginBottom: 10}}>
           {unsectioned.map(t => (

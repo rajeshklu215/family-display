@@ -7,6 +7,7 @@ import DailyForecast from './components/DailyForecast';
 import Todoist from './components/Todoist';
 import Quote from './components/Quote';
 import WordOfDay from './components/WordOfDay';
+import AnimalOfDay from './components/AnimalOfDay';
 import PhotoManager from './components/PhotoManager';
 import './App.css';
 
@@ -19,6 +20,7 @@ function Dashboard({ config }) {
       <DailyForecast />
       <PhotoWidget interval={config.photoInterval} />
       <Todoist />
+      <AnimalOfDay />
       <WordOfDay />
       <Quote />
     </div>

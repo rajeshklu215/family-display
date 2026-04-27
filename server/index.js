@@ -187,6 +187,55 @@ const funnyQuotes = [
   // Janet — Kim's Convenience
   { text: "I'm Korean, I can't just be regular disappointed. I have to be dramatically disappointed.", author: "Janet Kim" }
 ];
+// --- Animal of the Day API ---
+const animals = [
+  { name: 'Red Panda', fact: 'Red pandas spend most of their lives in trees and even sleep up there!', search: 'red panda' },
+  { name: 'Octopus', fact: 'An octopus has three hearts and blue blood!', search: 'octopus' },
+  { name: 'Elephant', fact: 'Elephants are the only animals that can\'t jump!', search: 'elephant' },
+  { name: 'Penguin', fact: 'Penguins propose to their mates with a pebble!', search: 'penguin' },
+  { name: 'Dolphin', fact: 'Dolphins sleep with one eye open!', search: 'dolphin' },
+  { name: 'Owl', fact: 'Owls can rotate their heads almost all the way around!', search: 'owl' },
+  { name: 'Sea Turtle', fact: 'Sea turtles have been around since the time of dinosaurs!', search: 'sea turtle' },
+  { name: 'Koala', fact: 'Koalas sleep up to 22 hours a day!', search: 'koala' },
+  { name: 'Cheetah', fact: 'Cheetahs can run as fast as a car on the highway!', search: 'cheetah' },
+  { name: 'Hummingbird', fact: 'Hummingbirds can fly backwards!', search: 'hummingbird' },
+  { name: 'Axolotl', fact: 'Axolotls can regrow their legs, heart, and even parts of their brain!', search: 'axolotl' },
+  { name: 'Giraffe', fact: 'A giraffe\'s tongue is about 18 inches long and is purple!', search: 'giraffe' },
+  { name: 'Seahorse', fact: 'Seahorse dads are the ones who carry the babies!', search: 'seahorse' },
+  { name: 'Chameleon', fact: 'Chameleons can move their eyes in two different directions at once!', search: 'chameleon' },
+  { name: 'Flamingo', fact: 'Flamingos are born white and turn pink from eating shrimp!', search: 'flamingo' },
+  { name: 'Sloth', fact: 'Sloths are such good swimmers — they can hold their breath for 40 minutes!', search: 'sloth' },
+  { name: 'Arctic Fox', fact: 'Arctic foxes change color with the seasons — white in winter, brown in summer!', search: 'arctic fox' },
+  { name: 'Jellyfish', fact: 'Jellyfish have been around for over 500 million years — before dinosaurs!', search: 'jellyfish' },
+  { name: 'Parrot', fact: 'Some parrots can learn to say over 100 words!', search: 'parrot' },
+  { name: 'Otter', fact: 'Sea otters hold hands while sleeping so they don\'t drift apart!', search: 'otter' },
+  { name: 'Butterfly', fact: 'Butterflies taste with their feet!', search: 'butterfly' },
+  { name: 'Panda', fact: 'Giant pandas spend about 12 hours a day eating bamboo!', search: 'giant panda' },
+  { name: 'Narwhal', fact: 'A narwhal\'s tusk is actually a giant tooth that can grow up to 10 feet!', search: 'narwhal' },
+  { name: 'Frog', fact: 'Some frogs can freeze solid in winter and thaw back to life in spring!', search: 'tree frog' },
+  { name: 'Peacock', fact: 'A peacock\'s tail feathers can be over 5 feet long!', search: 'peacock' },
+  { name: 'Hedgehog', fact: 'Hedgehogs have about 5,000 spines on their back!', search: 'hedgehog' },
+  { name: 'Whale', fact: 'Blue whales are the largest animals that have ever lived on Earth!', search: 'blue whale' },
+  { name: 'Raccoon', fact: 'Raccoons can remember solutions to problems for up to 3 years!', search: 'raccoon' },
+  { name: 'Starfish', fact: 'Starfish don\'t have a brain or blood!', search: 'starfish' },
+  { name: 'Tiger', fact: 'Every tiger has a unique pattern of stripes, like a fingerprint!', search: 'tiger' },
+];
+app.get('/api/animal', async (req, res) => {
+  const dayIndex = Math.floor(Date.now() / 86400000) % animals.length;
+  const animal = animals[dayIndex];
+  try {
+    const fetch = (await import('node-fetch')).default;
+    const resp = await fetch(`https://api.unsplash.com/search/photos?query=${encodeURIComponent(animal.search + ' animal')}&per_page=1&orientation=squarish`, {
+      headers: { Authorization: 'Client-ID IYbpKqVnVMoFPHR_w3qGMWxPC3M0rNJOKnlBOx0MVUQ' }
+    });
+    const data = await resp.json();
+    const img = data.results?.[0]?.urls?.regular || '';
+    res.json({ name: animal.name, fact: animal.fact, image: img });
+  } catch (e) {
+    res.json({ name: animal.name, fact: animal.fact, image: '' });
+  }
+});
+
 app.get('/api/quote', (req, res) => {
   // Pick a new quote every 30 minutes
   const slotIndex = Math.floor(Date.now() / (30 * 60 * 1000)) % funnyQuotes.length;
