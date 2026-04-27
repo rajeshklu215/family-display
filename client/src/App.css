@@ -145,13 +145,15 @@ body {
 .dress-tip { font-size: 0.9rem; color: var(--accent2); font-weight: 400; white-space: nowrap; }
 
 /* --- Daily Forecast --- */
-.forecast { grid-area: forecast; display: flex; flex-direction: column; }
+.forecast { grid-area: forecast; display: flex; flex-direction: column; overflow: hidden; }
 .weekly-forecast { display: flex; flex-direction: column; flex: 1; justify-content: space-evenly; }
-.weekly-day { display: flex; align-items: center; gap: 4px; font-size: 0.8rem; font-weight: 300; }
-.weekly-label { width: 36px; color: var(--dim); flex-shrink: 0; }
-.weekly-hi { color: var(--text); flex-shrink: 0; }
-.weekly-lo { color: var(--dim); flex-shrink: 0; }
-.weekly-day img { width: 36px; height: 36px; flex-shrink: 0; filter: brightness(1.2); }
+.weekly-day { display: flex; align-items: center; font-size: 1.4rem; font-weight: 300; }
+.weekly-label { flex: 1; color: var(--dim); }
+.weekly-sep { width: 1px; align-self: stretch; background: rgba(255,255,255,0.06); margin: 0 8px; }
+.weekly-day img { width: 56px; height: 56px; margin: -6px 0; filter: brightness(1.2); }
+.weekly-temps { flex: 1; display: flex; justify-content: flex-end; gap: 8px; }
+.weekly-hi { color: var(--text); }
+.weekly-lo { color: var(--dim); }
 
 /* --- Calendar (monthly grid) --- */
 .calendar { grid-area: calendar; overflow: hidden; display: flex; flex-direction: column; }

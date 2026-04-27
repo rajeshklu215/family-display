@@ -19,9 +19,13 @@ export default function DailyForecast() {
         {daily.map((d, i) => (
           <div key={i} className="weekly-day">
             <span className="weekly-label">{d.day}</span>
+            <span className="weekly-sep" />
             <img src={`https://openweathermap.org/img/wn/${d.icon}@2x.png`} alt="" />
-            <span className="weekly-hi">{Math.round(d.high)}°</span>
-            <span className="weekly-lo">{Math.round(d.low)}°</span>
+            <span className="weekly-sep" />
+            <span className="weekly-temps">
+              <span className="weekly-hi">{Math.round(d.high)}°</span>
+              <span className="weekly-lo">{Math.round(d.low)}°</span>
+            </span>
           </div>
         ))}
       </div>
