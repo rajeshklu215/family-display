@@ -151,7 +151,7 @@ body {
 .weekly-label { width: 50px; color: var(--dim); flex-shrink: 0; }
 .weekly-hi { color: var(--text); width: 42px; text-align: right; flex-shrink: 0; }
 .weekly-lo { color: var(--dim); width: 42px; text-align: right; flex-shrink: 0; }
-.weekly-day img { width: 52px; height: 52px; flex-shrink: 0; margin-left: 4px; filter: brightness(1.2) drop-shadow(0 0 4px rgba(126,200,227,0.2)); }
+.weekly-day img { width: 52px; height: 52px; flex-shrink: 0; margin-right: 8px; filter: brightness(1.2) drop-shadow(0 0 4px rgba(126,200,227,0.2)); }
 .weekly-desc { color: var(--dim); font-size: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 /* --- Calendar (monthly grid) --- */
