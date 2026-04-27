@@ -189,41 +189,49 @@ const funnyQuotes = [
 ];
 // --- Animal of the Day API ---
 const animals = [
-  { name: 'Red Panda', fact: 'Red pandas spend most of their lives in trees and even sleep up there!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/RedPandaFullBody.JPG/800px-RedPandaFullBody.JPG' },
-  { name: 'Octopus', fact: 'An octopus has three hearts and blue blood!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Octopus2.jpg/800px-Octopus2.jpg' },
-  { name: 'Elephant', fact: 'Elephants are the only animals that can\'t jump!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/800px-African_Bush_Elephant.jpg' },
-  { name: 'Penguin', fact: 'Penguins propose to their mates with a pebble!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Emperor_Penguin_Manchot_empereur.jpg/800px-Emperor_Penguin_Manchot_empereur.jpg' },
-  { name: 'Dolphin', fact: 'Dolphins sleep with one eye open!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Tursiops_truncatus_01.jpg/800px-Tursiops_truncatus_01.jpg' },
-  { name: 'Owl', fact: 'Owls can rotate their heads almost all the way around!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Bubo_virginianus_06.jpg/800px-Bubo_virginianus_06.jpg' },
-  { name: 'Sea Turtle', fact: 'Sea turtles have been around since the time of dinosaurs!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Green_turtle_swimming_over_coral_reefs_in_Kona.jpg/800px-Green_turtle_swimming_over_coral_reefs_in_Kona.jpg' },
-  { name: 'Koala', fact: 'Koalas sleep up to 22 hours a day!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Koala_climbing_tree.jpg/800px-Koala_climbing_tree.jpg' },
-  { name: 'Cheetah', fact: 'Cheetahs can run as fast as a car on the highway!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/TheCheethcat.jpg/800px-TheCheethcat.jpg' },
-  { name: 'Hummingbird', fact: 'Hummingbirds can fly backwards!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Broad-tailed_Hummingbird_%28male%29.jpg/800px-Broad-tailed_Hummingbird_%28male%29.jpg' },
-  { name: 'Axolotl', fact: 'Axolotls can regrow their legs, heart, and even parts of their brain!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/AxolsLucy.jpg/800px-AxolsLucy.jpg' },
-  { name: 'Giraffe', fact: 'A giraffe\'s tongue is about 18 inches long and is purple!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Giraffe_Mikumi_National_Park.jpg/800px-Giraffe_Mikumi_National_Park.jpg' },
-  { name: 'Seahorse', fact: 'Seahorse dads are the ones who carry the babies!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Hippocampus.jpg/800px-Hippocampus.jpg' },
-  { name: 'Chameleon', fact: 'Chameleons can move their eyes in two different directions at once!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Chameleon_-_Tanzania_-_Usambara_Mountains.jpg/800px-Chameleon_-_Tanzania_-_Usambara_Mountains.jpg' },
-  { name: 'Flamingo', fact: 'Flamingos are born white and turn pink from eating shrimp!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Flamingo_National_Zoo.jpg/800px-Flamingo_National_Zoo.jpg' },
-  { name: 'Sloth', fact: 'Sloths are such good swimmers — they can hold their breath for 40 minutes!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Bicho-pregui%C3%A7a_3.jpg/800px-Bicho-pregui%C3%A7a_3.jpg' },
-  { name: 'Arctic Fox', fact: 'Arctic foxes change color with the seasons — white in winter, brown in summer!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Polarfuchs_1241.jpg/800px-Polarfuchs_1241.jpg' },
-  { name: 'Jellyfish', fact: 'Jellyfish have been around for over 500 million years — before dinosaurs!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Jelly_cc11.jpg/800px-Jelly_cc11.jpg' },
-  { name: 'Parrot', fact: 'Some parrots can learn to say over 100 words!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Ara_ararauna_Luc_Viatour.jpg/800px-Ara_ararauna_Luc_Viatour.jpg' },
-  { name: 'Otter', fact: 'Sea otters hold hands while sleeping so they don\'t drift apart!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Sea_Otter_%28Enhydra_lutris%29_%2825169790524%29_crop.jpg/800px-Sea_Otter_%28Enhydra_lutris%29_%2825169790524%29_crop.jpg' },
-  { name: 'Butterfly', fact: 'Butterflies taste with their feet!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Monarch_In_May.jpg/800px-Monarch_In_May.jpg' },
-  { name: 'Panda', fact: 'Giant pandas spend about 12 hours a day eating bamboo!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Grosser_Panda.JPG/800px-Grosser_Panda.JPG' },
-  { name: 'Narwhal', fact: 'A narwhal\'s tusk is actually a giant tooth that can grow up to 10 feet!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Narwhals_breach.jpg/800px-Narwhals_breach.jpg' },
-  { name: 'Frog', fact: 'Some frogs can freeze solid in winter and thaw back to life in spring!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Red_eyed_tree_frog_edit2.jpg/800px-Red_eyed_tree_frog_edit2.jpg' },
-  { name: 'Peacock', fact: 'A peacock\'s tail feathers can be over 5 feet long!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Peacock_Plumage.jpg/800px-Peacock_Plumage.jpg' },
-  { name: 'Hedgehog', fact: 'Hedgehogs have about 5,000 spines on their back!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Igel.JPG/800px-Igel.JPG' },
-  { name: 'Whale', fact: 'Blue whales are the largest animals that have ever lived on Earth!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Humpback_stellwagen_edit.jpg/800px-Humpback_stellwagen_edit.jpg' },
-  { name: 'Raccoon', fact: 'Raccoons can remember solutions to problems for up to 3 years!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Procyon_lotor_%28Common_raccoon%29.jpg/800px-Procyon_lotor_%28Common_raccoon%29.jpg' },
-  { name: 'Starfish', fact: 'Starfish don\'t have a brain or blood!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Fromia_monilis_%28Seastar%29.jpg/800px-Fromia_monilis_%28Seastar%29.jpg' },
-  { name: 'Tiger', fact: 'Every tiger has a unique pattern of stripes, like a fingerprint!', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/800px-Cat03.jpg' },
+  { name: 'Red Panda', wiki: 'Red_panda', fact: 'Red pandas spend most of their lives in trees and even sleep up there!' },
+  { name: 'Octopus', wiki: 'Octopus', fact: 'An octopus has three hearts and blue blood!' },
+  { name: 'Elephant', wiki: 'African_elephant', fact: 'Elephants are the only animals that can\'t jump!' },
+  { name: 'Penguin', wiki: 'Emperor_penguin', fact: 'Penguins propose to their mates with a pebble!' },
+  { name: 'Dolphin', wiki: 'Bottlenose_dolphin', fact: 'Dolphins sleep with one eye open!' },
+  { name: 'Owl', wiki: 'Great_horned_owl', fact: 'Owls can rotate their heads almost all the way around!' },
+  { name: 'Sea Turtle', wiki: 'Green_sea_turtle', fact: 'Sea turtles have been around since the time of dinosaurs!' },
+  { name: 'Koala', wiki: 'Koala', fact: 'Koalas sleep up to 22 hours a day!' },
+  { name: 'Cheetah', wiki: 'Cheetah', fact: 'Cheetahs can run as fast as a car on the highway!' },
+  { name: 'Hummingbird', wiki: 'Hummingbird', fact: 'Hummingbirds can fly backwards!' },
+  { name: 'Axolotl', wiki: 'Axolotl', fact: 'Axolotls can regrow their legs, heart, and even parts of their brain!' },
+  { name: 'Giraffe', wiki: 'Giraffe', fact: 'A giraffe\'s tongue is about 18 inches long and is purple!' },
+  { name: 'Seahorse', wiki: 'Seahorse', fact: 'Seahorse dads are the ones who carry the babies!' },
+  { name: 'Chameleon', wiki: 'Chameleon', fact: 'Chameleons can move their eyes in two different directions at once!' },
+  { name: 'Flamingo', wiki: 'Flamingo', fact: 'Flamingos are born white and turn pink from eating shrimp!' },
+  { name: 'Sloth', wiki: 'Sloth', fact: 'Sloths are such good swimmers — they can hold their breath for 40 minutes!' },
+  { name: 'Arctic Fox', wiki: 'Arctic_fox', fact: 'Arctic foxes change color with the seasons — white in winter, brown in summer!' },
+  { name: 'Jellyfish', wiki: 'Jellyfish', fact: 'Jellyfish have been around for over 500 million years — before dinosaurs!' },
+  { name: 'Parrot', wiki: 'Macaw', fact: 'Some parrots can learn to say over 100 words!' },
+  { name: 'Otter', wiki: 'Sea_otter', fact: 'Sea otters hold hands while sleeping so they don\'t drift apart!' },
+  { name: 'Butterfly', wiki: 'Monarch_butterfly', fact: 'Butterflies taste with their feet!' },
+  { name: 'Panda', wiki: 'Giant_panda', fact: 'Giant pandas spend about 12 hours a day eating bamboo!' },
+  { name: 'Narwhal', wiki: 'Narwhal', fact: 'A narwhal\'s tusk is actually a giant tooth that can grow up to 10 feet!' },
+  { name: 'Frog', wiki: 'Red-eyed_tree_frog', fact: 'Some frogs can freeze solid in winter and thaw back to life in spring!' },
+  { name: 'Peacock', wiki: 'Peafowl', fact: 'A peacock\'s tail feathers can be over 5 feet long!' },
+  { name: 'Hedgehog', wiki: 'Hedgehog', fact: 'Hedgehogs have about 5,000 spines on their back!' },
+  { name: 'Whale', wiki: 'Blue_whale', fact: 'Blue whales are the largest animals that have ever lived on Earth!' },
+  { name: 'Raccoon', wiki: 'Raccoon', fact: 'Raccoons can remember solutions to problems for up to 3 years!' },
+  { name: 'Starfish', wiki: 'Starfish', fact: 'Starfish don\'t have a brain or blood!' },
+  { name: 'Tiger', wiki: 'Tiger', fact: 'Every tiger has a unique pattern of stripes, like a fingerprint!' },
 ];
-app.get('/api/animal', (req, res) => {
+app.get('/api/animal', async (req, res) => {
   const dayIndex = Math.floor(Date.now() / 86400000) % animals.length;
   const animal = animals[dayIndex];
-  res.json({ name: animal.name, fact: animal.fact, image: animal.image });
+  try {
+    const fetch = (await import('node-fetch')).default;
+    const resp = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${animal.wiki}`);
+    const data = await resp.json();
+    const image = data.originalimage?.source || data.thumbnail?.source || '';
+    res.json({ name: animal.name, fact: animal.fact, image });
+  } catch (e) {
+    res.json({ name: animal.name, fact: animal.fact, image: '' });
+  }
 });
 
 app.get('/api/quote', (req, res) => {
