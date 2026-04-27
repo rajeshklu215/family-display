@@ -129,7 +129,7 @@ body {
 /* --- Clock --- */
 .clock-widget { grid-area: clock; background: none; border: none; backdrop-filter: none; padding: 16px 20px; }
 .clock-widget::before { display: none; }
-.wc-time { font-size: 6.5rem; font-weight: 100; letter-spacing: 6px; white-space: nowrap; line-height: 1; background: linear-gradient(135deg, #fff 30%, var(--accent) 70%, var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 40px rgba(126,200,227,0.2)); }
+.wc-time { font-size: 5rem; font-weight: 100; letter-spacing: 5px; white-space: nowrap; line-height: 1; background: linear-gradient(135deg, #fff 30%, var(--accent) 70%, var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 40px rgba(126,200,227,0.2)); }
 .wc-date { font-size: 1.6rem; font-weight: 300; color: var(--dim); margin-top: 4px; letter-spacing: 3px; text-transform: uppercase; }
 
 /* --- Weather (temp + kid, top right) --- */
@@ -147,12 +147,12 @@ body {
 /* --- Daily Forecast --- */
 .forecast { grid-area: forecast; display: flex; flex-direction: column; }
 .weekly-forecast { display: flex; flex-direction: column; flex: 1; justify-content: space-evenly; }
-.weekly-day { display: flex; align-items: center; gap: 4px; font-size: 1.4rem; font-weight: 300; }
+.weekly-day { display: flex; align-items: center; gap: 8px; font-size: 1.4rem; font-weight: 300; }
 .weekly-label { width: 56px; color: var(--dim); flex-shrink: 0; }
-.weekly-day img { width: 44px; height: 44px; flex-shrink: 0; filter: brightness(1.2) drop-shadow(0 0 4px rgba(126,200,227,0.2)); }
-.weekly-desc { flex: 1; color: var(--dim); font-size: 1.2rem; }
-.weekly-hi { color: var(--text); width: 46px; text-align: right; }
-.weekly-lo { color: var(--dim); width: 46px; text-align: right; }
+.weekly-hi { color: var(--text); width: 46px; text-align: right; flex-shrink: 0; }
+.weekly-lo { color: var(--dim); width: 46px; text-align: right; flex-shrink: 0; }
+.weekly-day img { width: 60px; height: 60px; flex-shrink: 0; margin-left: 8px; filter: brightness(1.2) drop-shadow(0 0 4px rgba(126,200,227,0.2)); }
+.weekly-desc { color: var(--dim); font-size: 1.1rem; }
 
 /* --- Calendar (monthly grid) --- */
 .calendar { grid-area: calendar; overflow: hidden; display: flex; flex-direction: column; }
