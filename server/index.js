@@ -278,14 +278,15 @@ const upload = multer({
 
 function getDateTaken(filePath) {
   try {
-    const buf = Buffer.alloc(65635);
-    const fd = fs.openSync(filePath, 'r');
-    const bytesRead = fs.readSync(fd, buf, 0, buf.length, 0);
-    fs.closeSync(fd);
-    const parser = require('exif-parser').create(buf.slice(0, bytesRead));
-    const result = parser.parse();
-    const ts = result.tags.DateTimeOriginal || result.tags.CreateDate;
-    if (ts) return new Date(ts * 1000).toISOString();
+    if (/\.jpe?g$/i.test(filePath)) {
+      const buf = Buffer.alloc(65635);
+      const fd = fs.openSync(filePath, 'r');
+      const bytesRead = fs.readSync(fd, buf, 0, buf.length, 0);
+      fs.closeSync(fd);
+      const result = require('exif-parser').create(buf.slice(0, bytesRead)).parse();
+      const ts = result.tags.DateTimeOriginal || result.tags.CreateDate;
+      if (ts) return new Date(ts * 1000).toISOString();
+    }
   } catch (e) { /* no EXIF data */ }
   return null;
 }
