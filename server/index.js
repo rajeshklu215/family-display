@@ -14,8 +14,14 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 }
 
-// --- Weather API ---
+// --- Weather API (cached to reduce API calls) ---
+let weatherCache = { data: null, ts: 0 };
+const WEATHER_TTL = 30 * 60 * 1000; // 30 minutes
+
 app.get('/api/weather', async (req, res) => {
+  if (weatherCache.data && Date.now() - weatherCache.ts < WEATHER_TTL) {
+    return res.json(weatherCache.data);
+  }
   try {
     const { apiKey, city, state, units } = config.weather;
     const fetch = (await import('node-fetch')).default;
@@ -39,8 +45,11 @@ app.get('/api/weather', async (req, res) => {
       days[day].low = Math.min(days[day].low, f.main.temp_min);
       if (f.weather[0].icon.endsWith('d')) { days[day].icon = f.weather[0].icon; days[day].desc = f.weather[0].main; }
     });
-    res.json({ current: weather, hourly, daily: Object.values(days).slice(0, 5) });
+    const result = { current: weather, hourly, daily: Object.values(days).slice(0, 5) };
+    weatherCache = { data: result, ts: Date.now() };
+    res.json(result);
   } catch (e) {
+    if (weatherCache.data) return res.json(weatherCache.data);
     res.status(500).json({ error: e.message });
   }
 });
@@ -267,9 +276,26 @@ const upload = multer({
   fileFilter: (req, file, cb) => cb(null, /^image\//i.test(file.mimetype))
 });
 
+function getDateTaken(filePath) {
+  try {
+    const buf = Buffer.alloc(65635);
+    const fd = fs.openSync(filePath, 'r');
+    const bytesRead = fs.readSync(fd, buf, 0, buf.length, 0);
+    fs.closeSync(fd);
+    const parser = require('exif-parser').create(buf.slice(0, bytesRead));
+    const result = parser.parse();
+    const ts = result.tags.DateTimeOriginal || result.tags.CreateDate;
+    if (ts) return new Date(ts * 1000).toISOString();
+  } catch (e) { /* no EXIF data */ }
+  return null;
+}
+
 app.get('/api/photos', (req, res) => {
   const files = fs.existsSync(photosDir) ? fs.readdirSync(photosDir).filter(f => /\.(jpe?g|png|webp|gif)$/i.test(f)) : [];
-  res.json({ photos: files.map(f => ({ id: f, url: `/api/photos/file/${encodeURIComponent(f)}` })), interval: config.photos.intervalSeconds });
+  res.json({ photos: files.map(f => {
+    const filePath = path.join(photosDir, f);
+    return { id: f, url: `/api/photos/file/${encodeURIComponent(f)}`, dateTaken: getDateTaken(filePath) };
+  }), interval: config.photos.intervalSeconds });
 });
 
 app.post('/api/photos/upload', upload.array('photos', 20), (req, res) => {
