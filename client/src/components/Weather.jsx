@@ -5,7 +5,9 @@ export default function Weather({ city }) {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    const load = () => fetch('/api/weather').then(r => r.json()).then(setData).catch(() => {});
+    const load = () => fetch('/api/weather').then(r => r.json()).then(d => {
+      if (d && !d.error && d.current) setData(d);
+    }).catch(() => {});
     load();
     const t = setInterval(load, 600000);
     return () => clearInterval(t);

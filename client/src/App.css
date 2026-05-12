@@ -135,7 +135,7 @@ body {
 .weather { grid-area: weather; display: flex; align-items: center; }
 .weather-row { display: flex; align-items: center; gap: 8px; width: 100%; }
 .weather-main { display: flex; align-items: center; gap: 8px; }
-.weather-main img { width: 80px; height: 80px; filter: brightness(1.2) drop-shadow(0 0 8px rgba(126,200,227,0.3)); }
+.weather-main img { width: 80px; height: 80px; }
 .weather-main .temp { font-size: 2.8rem; font-weight: 200; line-height: 1; }
 .weather-main .desc { color: var(--dim); font-size: 1.2rem; text-transform: capitalize; font-weight: 300; }
 .dress-up { margin-left: auto; text-align: center; display: flex; flex-direction: column; align-items: center; }
@@ -149,7 +149,7 @@ body {
 .weekly-day { display: flex; align-items: center; font-size: 1.4rem; font-weight: 300; }
 .weekly-label { flex: 1; color: var(--dim); }
 .weekly-sep { width: 1px; align-self: stretch; background: rgba(255,255,255,0.06); margin: 0 8px; }
-.weekly-day img { width: 56px; height: 56px; margin: -6px 0; filter: brightness(1.2); }
+.weekly-day img { width: 56px; height: 56px; margin: -6px 0; }
 .weekly-temps { flex: 1; display: flex; justify-content: flex-end; gap: 8px; }
 .weekly-hi { color: var(--text); }
 .weekly-lo { color: var(--dim); }
@@ -170,7 +170,7 @@ body {
 
 /* --- Animal of the Day --- */
 .animal-of-day { grid-area: animal; }
-.aod-image { width: 100%; border-radius: 12px; object-fit: cover; max-height: 200px; margin-bottom: 8px; }
+.aod-image { width: 100%; border-radius: 12px; object-fit: contain; max-height: 200px; margin-bottom: 8px; }
 .aod-name { font-size: 1.2rem; font-weight: 500; color: var(--accent); margin-bottom: 4px; }
 .aod-fact { font-size: 0.9rem; font-weight: 300; color: var(--text); line-height: 1.4; }
 .wod-word { font-size: 1.15rem; font-weight: 500; color: var(--accent); display: inline; }

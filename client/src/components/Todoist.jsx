@@ -6,8 +6,10 @@ export default function Todoist() {
 
   useEffect(() => {
     const load = () => fetch('/api/todoist').then(r => r.json()).then(d => {
-      setSections(d.sections || []);
-      setUnsectioned(d.unsectioned || []);
+      if (d && !d.error) {
+        setSections(d.sections || []);
+        setUnsectioned(d.unsectioned || []);
+      }
     }).catch(() => {});
     load();
     const t = setInterval(load, 300000);
